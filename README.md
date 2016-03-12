@@ -60,22 +60,22 @@ All preparations are done. In the following step we assume these steps have been
 
 #### 4. Boot Windows 7/8/10 Installation
 Booting into windows installations is easy. Just put the installations files in a new partition and add a new entry to the menu.lst. Let's take windows 10 as an example(Win7 and Win8 are the same). Here is the process:  
-1. Create a new partition in the extend partiton of the usb HDD. The space should be at least 4.1GB. The type is fat32.  
+* Create a new partition in the extend partiton of the usb HDD. The space should be at least 4.1GB. The type is fat32.  
   ![Alt test](https://github.com/iejr/Install-OS-From-USB-HDD/blob/master/src/image/8-WinPartition.png)
-2. Download a win10 Installation iso file, extract all of them into the root of the new partition.
-3. Create an empty identity file named "BootingWin10" and put it into the root of the new partition.
+* Download a win10 Installation iso file, extract all of them into the root of the new partition.
+* Create an empty identity file named "BootingWin10" and put it into the root of the new partition.
 
 
 Now save all your work, then reboot your computer and to check if all changes has taken effect.  
 
 #### 5. Boot WinPE Environment
 Windows PE would be a powerful tools if one usually custom a lot on disks. In grub4dos, to boot into WinPE environment is not difficult.  
-1. Create a new Fat32 paritions on the extend part of the usb HDD. The space requirement could be at least 1GB, I think it is enough for PE files.
+* Create a new Fat32 paritions on the extend part of the usb HDD. The space requirement could be at least 1GB, I think it is enough for PE files.
   ![Alt test](https://github.com/iejr/Install-OS-From-USB-HDD/blob/master/src/image/9-WinPEPartition.png)  
 
-2. Download a PE iso file, and put it into the new partition directly. Assume the iso file is "WinPE.iso".  
+* Download a PE iso file, and put it into the new partition directly. Assume the iso file is "WinPE.iso".  
 
-3. Modifiy the menu.lst file
+* Modifiy the menu.lst file
 
   ```
   timeout 10
@@ -98,14 +98,14 @@ All step are done, reboot to check the result.
 
 #### 6. Boot Ubuntu Installation
 Ubuntu is a popular linux distribution now. In this tutorial I will take a 64 bit Ubuntu 14.04 as example. Booting linux is a little complex since the kernel is usually need extra argument.  
-1. Create a new FAT32 partition with 1GB space.  
+* Create a new FAT32 partition with 1GB space.  
   ![Alt test](https://github.com/iejr/Install-OS-From-USB-HDD/blob/master/src/image/10-UbuntuPartition.png)  
-2. Download ubuntu 14.04 iso from its official website.
+* Download ubuntu 14.04 iso from its official website.
   >http://www.ubuntu.com/desktop
 
   Extract all files in the iso to the new partition. Create a new identity empty file named "BootingUbuntu14" in the same location.  
 
-3. Modify the menu.lst.
+* Modify the menu.lst.
 
   ```
   timeout 10
@@ -129,14 +129,14 @@ END
 #### 7. Boot CentOS Installation
 As a popular personal server system, CentOS is widely used in our life, or not for normal guys. But, when the idea that you determine to build a PC server comes to you someday, you may remember this article for easily install it.  
 For instance, I'll use CentOS 7, which is the newest version of CentOS family now.  
-1. Create a new FAT32 partition with 4GB space on the USB HDD's extend partition.
+* Create a new FAT32 partition with 4GB space on the USB HDD's extend partition.
   ![Alt test](https://github.com/iejr/Install-OS-From-USB-HDD/blob/master/src/image/11-CentOSPartition.png)
 
-2. Download CentOS 7 image from
+* Download CentOS 7 image from
 >https://www.centos.org/
 
   Extract all files to the new partition, with a new file "BootingCentOS7".
-3. Edit the menu.lst
+* Edit the menu.lst
 
   ```
   timeout 10
