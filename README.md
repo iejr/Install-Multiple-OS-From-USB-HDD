@@ -56,7 +56,7 @@ The PBR type Grub4Dos will search and boot the file named "GRLDR" in the root di
 This partitions is used to storage the OS files. The space is up to you and the total space of the disk. You could use all space left. For me, however, I have a 160GB disk. And I part 90GB for this partition. Because I want some extra space so that the disk can be used as a normal usb HDD. Thus, the last 60GB is a normal NTFS partition to storage some other files in my life.   
 ![Alt test](https://github.com/iejr/Install-OS-From-USB-HDD/blob/master/src/image/7-ExtendPartition.png)  
 
-All Preparations are done. In the following step we assume these steps have been finished.
+All preparations are done. In the following step we assume these steps have been finished.
 
 #### 4. Boot Windows 7/8/10 Installation
 Booting into windows installations is easy. Just put the installations files in a new partition and add a new entry to the menu.lst. Let's take windows 10 as an example(Win7 and Win8 are the same). Here is the process:  
@@ -64,34 +64,18 @@ Booting into windows installations is easy. Just put the installations files in 
 ![Alt test](https://github.com/iejr/Install-OS-From-USB-HDD/blob/master/src/image/8-WinPartition.png)
 
 2. Download a win10 Installation iso file, extract all of them into the root of the new partition.
-
 3. Create an empty identity file named "BootingWin10" and put it into the root of the new partition.
 
-4. Go into the grub partition, edit /grub/menu.lst  
-
-  ```
-  timeout 10
-  default 0                                                              
-  find --set-root /GRUB/FONTS.GZ
-  fontfile /GRUB/FONTS.GZ
-
-  title [01]----Install Windows 10 OS
-  find --set-root /BootingWin10
-  chainloader /BOOTMGR
-  ```
-
-  "title" tells grub you have a new entry.  
-  "----Install Windows 10 OS" is the content of this title.  
-  "find --set-root /BootingWin10" tells grub to change the current root directory to the partition which has a file named "BootingWin10" in it. Oh, that is what we added in the 3rd step. So the current root is set as the partition contained all windows 10 Installation files.  
-  "chainloader /BOOTMGR" is another syntax in the grub4dos. It means to take over control of booting to the file "BOOTMGR". And BOOTMGR is the entrance of win10 Installation phase.  
 
 Now save all your work, then reboot your computer and to check if all changes has taken effect.  
 
 #### 5. Boot WinPE Environment
 Windows PE would be a powerful tools if one usually custom a lot on disks. In grub4dos, to boot into WinPE environment is not difficult.  
-1. Create a new Fat32 paritions on the extend part of the usb HDD. The space requirement could be at least 1GB, I think it can hold most of the PE nowadays.  
+1. Create a new Fat32 paritions on the extend part of the usb HDD. The space requirement could be at least 1GB, I think it is enough for PE files.
 ![Alt test](https://github.com/iejr/Install-OS-From-USB-HDD/blob/master/src/image/9-WinPEPartition.png)  
-2. Download a PE iso file, and put it into the new partition directly. Assume the iso file is "WinPE.iso".
+
+2. Download a PE iso file, and put it into the new partition directly. Assume the iso file is "WinPE.iso".  
+
 3. Modifiy the menu.lst file
 
   ```
@@ -108,7 +92,7 @@ Windows PE would be a powerful tools if one usually custom a lot on disks. In gr
     chainloader (0xff)
   ```    
 
-  In this case we use command "map". It could map the iso file to the RAM so the chainloader could boot from the RAM. The "--hook" argument means to take map opeartion works immediately. However, if you ask me why is 0xff, I could explain either since I failed to find the anwser. Anyone knows reason could we have a discussion.  
+  In this case we use command "map". It could map the iso file to the RAM so the chainloader could boot from the RAM. The "--hook" argument means to take map operation works immediately. However, if you ask me why is 0xff, I could not explain either since I failed to find the anwser. Anyone knows the reason could we have a discussion.  
 
 All step are done, reboot to check the result.  
 
@@ -117,6 +101,7 @@ All step are done, reboot to check the result.
 Ubuntu is a popular linux distribution now. In this tutorial I will take a 64 bit Ubuntu 14.04 as example. Booting linux is a little complex since the kernel is usually need extra argument.  
 1. Create a new FAT32 partition with 1GB space.  
 ![Alt test](https://github.com/iejr/Install-OS-From-USB-HDD/blob/master/src/image/10-UbuntuPartition.png)  
+
 2. Download ubuntu 14.04 iso from its official website.
   >http://www.ubuntu.com/desktop
 
@@ -148,6 +133,7 @@ As a popular personal server system, CentOS is widely used in our life, or not f
 For instance, I'll use CentOS 7, which is the newest version of CentOS family now.
 1. Create a new FAT32 partition with 4GB space on the USB HDD's extend partition.
 ![Alt test](https://github.com/iejr/Install-OS-From-USB-HDD/blob/master/src/image/11-CentOSPartition.png)
+
 2. Download CentOS 7 image from
 >https://www.centos.org/
 
