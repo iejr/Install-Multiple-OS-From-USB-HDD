@@ -1,0 +1,45 @@
+timeout 10
+default 0
+
+find --set-root /GRUB/FONTS.GZ
+fontfile /GRUB/FONTS.GZ
+
+
+title [01]----Enter WinPE 2003 Environment
+	find --set-root /WinPE2003.iso
+	map --mem /WinPE2003.iso (0xff)
+	map --hook
+	chainloader (0xff)
+
+title [02]----Enter WinPE 7 Environment
+        find --set-root /WinPE7.iso
+	map --mem /WinPE7.iso (0xff)
+	map --hook
+	chainloader (0xff)
+
+title [03]----Install Windows 7 x86 Ultimate System
+	chainloader (hd0,6)/BOOTMGR
+
+title [04]----Install Windows 7 x64 Ultimate System
+	chainloader (hd0,7)/BOOTMGR
+
+title [05]----Install Ubuntu 10.04 amd64 Desktop System
+	root (hd0,10)
+	kernel /casper/vmlinuz file=/preseed/ubuntu.seed boot=casper initrd=/casper/initrd.lz ignore_uuid live-media-path=/casper quiet splash 
+	initrd /casper/initrd.lz
+
+title [06]----Install Ubuntu 14.04 amd64 Desktop System
+	root (hd0,9)
+	kernel /boot/vmlinuz.efi boot=casper iso-scan/filename=/ubuntu-14.04.1-desktop-amd64.iso ro quiet splash locale=zh_CN.UTF-8
+	initrd /boot/initrd.lz
+
+title [07]----Install CentOS 7 x86_64 System
+	root (hd0,8)
+	kernel /isolinux/vmlinuz inst.stage2=hd:/dev/sda9 quiet rd.live.check
+	initrd /isolinux/initrd.img
+	boot
+
+title [08]----Try my own Ubuntu 10.04 amd64 System
+	root (hd0,12)
+	kernel /casper/vmlinuz file=/preseed/ubuntu.seed boot=casper initrd=/casper/initrd.lz ignore_uuid live-media-path=/casper quiet splash 
+	initrd /casper/initrd.lz
